@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+   Route::group(['namespace' => 'Dashboard'], function(){
+      Route::get('/', 'IndexController')->name('admin.dashboard.index');
+   });
+
+   Route::group(['namespace' => 'User', 'prefix' => 'users'], function(){
+       Route::get('/', 'IndexController')->name('admin.users.index');
+       Route::get('/create', 'CreateController')->name('admin.users.create');
+       Route::post('/', 'StoreController')->name('admin.users.store');
+   });
 });
+
+Auth::routes();
+
+Route::get('/', function(){
+   return view('welcome');
+});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
