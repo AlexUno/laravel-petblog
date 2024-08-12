@@ -16,8 +16,8 @@ class StoreController extends Controller
         $data['password'] = Hash::make($data['password']);
 
         User::firstOrCreate(
-          ['email' => $data['email']],
-          $data
+            ['email' => $data['email']],
+            $data
         );
 
         return redirect()->route('admin.users.index');

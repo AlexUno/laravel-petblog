@@ -64,13 +64,17 @@
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->role->name }}</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary px-2 py-1">
+                                                <td class="d-flex">
+                                                    <a href="{{ route('admin.users.edit', $user->id) }}" class="mr-2 btn btn-primary px-2 py-1">
                                                         <i class="fas fa-pen" style="font-size: 12px;"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger px-2 py-1">
-                                                        <i class="fas fa-trash" style="font-size: 12px;"></i>
-                                                    </button>
+                                                    </a>
+                                                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-danger px-2 py-1">
+                                                            <i class="fas fa-trash" style="font-size: 12px;"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
