@@ -217,5 +217,13 @@
 <script src="{{ URL::asset('/') }}assets/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{ URL::asset('/') }}assets/admin/dist/js/adminlte.js"></script>
+<!-- bs-custom-file-input -->
+<script src="{{ URL::asset('/') }}assets/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script>
+    $(function () {
+        bsCustomFileInput.init();
+    });
+</script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 </html>

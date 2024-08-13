@@ -51,6 +51,7 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Аватар</th>
                                         <th>Пользователь</th>
                                         <th>Email</th>
                                         <th>Роль</th>
@@ -61,6 +62,13 @@
                                         @foreach($users as $user)
                                             <tr>
                                                 <td>{{ $user->id }}</td>
+                                                <td>
+                                                    <img
+                                                        width="40"
+                                                        height="40"
+                                                        src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('assets/admin/img/avatar.png') }}"
+                                                        alt="avatar"/>
+                                                </td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->role->name }}</td>

@@ -26,8 +26,31 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-6">
-                        <form action="{{ route('admin.users.store') }}" method="post">
+                        <form action="{{ route('admin.users.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <div class="form-group">
+                                <label class="d-block" for="name">Аватар</label>
+                                <img id="previewAvatar"
+                                     class="mb-3"
+                                     src="{{ asset('assets/admin/img/avatar.png') }}"
+                                     alt="avatar"
+                                     width="200"
+                                     height="200"/>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input name="avatar" type="file" class="custom-file-input" id="avatar">
+                                        <label class="custom-file-label" for="avatar">Выберите изображение</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Загрузить</span>
+                                    </div>
+                                </div>
+                            </div>
+                            @error('avatar')
+                                <p class="text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                             <div class="form-group">
                                 <label for="name">Имя</label>
                                 <input
