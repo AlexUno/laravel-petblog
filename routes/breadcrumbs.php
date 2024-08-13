@@ -2,6 +2,7 @@
 
 
 use App\Models\Category;
+use App\Models\Tag;
 use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
@@ -47,4 +48,22 @@ Breadcrumbs::for('admin.categories.edit', function(BreadcrumbTrail $trail, Categ
 });
 
 /* -------------------------- End categories  ----------------------------------*/
+
+/* -------------------------- Tags ---------------------------------------*/
+Breadcrumbs::for('admin.tags.index', function(BreadcrumbTrail $trail){
+    $trail->parent('admin.dashboard.index');
+    $trail->push('Теги', route('admin.tags.index'));
+});
+
+Breadcrumbs::for('admin.tags.create', function(BreadcrumbTrail $trail){
+    $trail->parent('admin.tags.index');
+    $trail->push('Добавить тег', route('admin.tags.create'));
+});
+
+Breadcrumbs::for('admin.tags.edit', function(BreadcrumbTrail $trail, Tag $tag){
+    $trail->parent('admin.tags.index');
+    $trail->push('Редактировать тег', route('admin.tags.edit', ['tag' => $tag]));
+});
+
+/* -------------------------- End tags  ----------------------------------*/
 // End admin

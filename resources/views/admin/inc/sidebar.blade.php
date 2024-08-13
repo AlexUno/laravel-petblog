@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('admin.tags.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tag"></i>
                         <p>
                             Теги
