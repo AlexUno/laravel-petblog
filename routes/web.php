@@ -27,6 +27,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
        Route::patch('/{user}', 'UpdateController')->name('admin.users.update');
        Route::delete('/{user}', 'DestroyController')->name('admin.users.destroy');
    });
+
+   Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function(){
+       Route::get('/', 'IndexController')->name('admin.categories.index');
+       Route::get('/create', 'CreateController')->name('admin.categories.create');
+       Route::post('/', 'StoreController')->name('admin.categories.store');
+       Route::get('/{category}/edit', 'EditController')->name('admin.categories.edit');
+       Route::patch('/{category}', 'UpdateController')->name('admin.categories.update');
+       Route::delete('/{category}', 'DestroyController')->name('admin.categories.destroy');
+   });
 });
 
 Auth::routes();
