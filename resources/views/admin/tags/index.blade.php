@@ -79,6 +79,11 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                {{ $tags->links() }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
