@@ -91,6 +91,11 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                {{ $users->links() }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
