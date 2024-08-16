@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin\User;
 
-use App\Http\Requests\Admin\User\StoreRequest;
+use App\Http\Requests\Admin\User\SigninRequest;
 
-class StoreController extends BaseController
+class StoreController extends MainController
 {
-    public function __invoke(StoreRequest $request)
+    public function __invoke(SigninRequest $request)
     {
         $data = $request->validated();
         $this->service->store($data);

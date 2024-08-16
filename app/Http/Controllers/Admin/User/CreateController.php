@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
-class CreateController extends BaseController
+class CreateController extends MainController
 {
     public function __invoke()
     {

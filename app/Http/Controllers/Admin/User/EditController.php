@@ -6,7 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class EditController extends BaseController
+class EditController extends MainController
 {
     public function __invoke(User $user)
     {

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Post;
 use App\Http\Requests\Admin\Post\StoreRequest;
 use Illuminate\Http\Request;
 
-class StoreController extends BaseController
+class StoreController extends MainController
 {
     public function __invoke(StoreRequest $request)
     {

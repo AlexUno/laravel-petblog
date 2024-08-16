@@ -55,11 +55,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::patch('/{post}', 'UpdateController')->name('admin.posts.update');
         Route::delete('/{post}', 'DestroyController')->name('admin.posts.destroy');
     });
+
+    Route::group(['namespace' => 'Auth'], function(){
+       Route::get('/login', 'LoginController')->name('admin.auth.login');
+       Route::post('/login', 'SigninController')->name('admin.auth.signin');
+    });
 });
 
 Auth::routes();
 
 Route::get('/', function(){
    return view('welcome');
-});
+})->name('index');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
