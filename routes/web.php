@@ -59,6 +59,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
     Route::group(['namespace' => 'Auth'], function(){
        Route::get('/login', 'LoginController')->name('admin.auth.login');
        Route::post('/login', 'SigninController')->name('admin.auth.signin');
+
+       Route::group(['namespace' => 'Password', 'prefix' => 'password'], function(){
+          Route::get('/reset', 'ForgotPasswordController')->name('admin.auth.passwords.forgot');
+          Route::post('/email', 'SendEmailPasswordController')->name('admin.auth.passwords.email');
+          Route::get('/reset/{token}', 'ResetPasswordController')->name('admin.auth.password.reset');
+          Route::post('/reset', 'UpdatePasswordController')->name('admin.auth.password.update');
+       });
     });
 });
 

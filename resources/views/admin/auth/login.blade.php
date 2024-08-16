@@ -87,7 +87,7 @@
                 </form>
 
                 <p class="mt-2 mb-1">
-                    <a href="forgot-password.html">Восстановить пароль</a>
+                    <a href="{{ route('admin.auth.passwords.forgot') }}">Восстановить пароль</a>
                 </p>
             </div>
             <!-- /.login-card-body -->
