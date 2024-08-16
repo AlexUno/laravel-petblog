@@ -2,6 +2,7 @@
 
 
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
@@ -66,4 +67,28 @@ Breadcrumbs::for('admin.tags.edit', function(BreadcrumbTrail $trail, Tag $tag){
 });
 
 /* -------------------------- End tags  ----------------------------------*/
+
+/* -------------------------- Posts ---------------------------------------*/
+
+Breadcrumbs::for('admin.posts.index', function(BreadcrumbTrail $trail){
+    $trail->parent('admin.dashboard.index');
+    $trail->push('Посты', route('admin.posts.index'));
+});
+
+Breadcrumbs::for('admin.posts.create', function(BreadcrumbTrail $trail){
+    $trail->parent('admin.posts.index');
+    $trail->push('Добавить пост', route('admin.posts.create'));
+});
+
+Breadcrumbs::for('admin.posts.show', function(BreadcrumbTrail $trail, Post $post){
+    $trail->parent('admin.posts.index');
+    $trail->push($post->title, route('admin.posts.show', ['post' => $post]));
+});
+
+Breadcrumbs::for('admin.posts.edit', function(BreadcrumbTrail $trail, Post $post){
+    $trail->parent('admin.posts.index');
+    $trail->push('Редактировать пост', route('admin.posts.edit', ['post' => $post]));
+});
+
+/* -------------------------- End posts  ----------------------------------*/
 // End admin

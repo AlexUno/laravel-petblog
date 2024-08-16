@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | @yield('head-title')</title>
-
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ URL::asset('/') }}assets/admin/plugins/select2/css/select2.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -214,6 +215,7 @@
 <!-- Summernote -->
 <script src="{{ URL::asset('/') }}assets/admin/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
+<script src="{{ URL::asset('/') }}assets/admin/plugins/select2/js/select2.full.min.js"></script>
 <script src="{{ URL::asset('/') }}assets/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{ URL::asset('/') }}assets/admin/dist/js/adminlte.js"></script>
@@ -223,6 +225,14 @@
     $(function () {
         bsCustomFileInput.init();
     });
+
+    // Summernote
+    $('#summernote').summernote({
+        height: 100
+    });
+
+    //Initialize Select2 Elements
+    $('.select2').select2();
 </script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>

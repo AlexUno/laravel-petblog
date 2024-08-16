@@ -1,26 +1,31 @@
 function previewAvatar(){
-    const $inputFile = document.querySelector('.custom-file-input');
-    const $previewAvatar = document.querySelector('#previewAvatar');
+    const $inputFile = document.querySelectorAll('.custom-file-input');
+    const $previewAvatar = document.querySelectorAll('#previewAvatar');
 
-    if(!$inputFile && !$previewAvatar)
-        return;
+    if(!$inputFile.length && !$previewAvatar.length) return;
 
-    function createImage(files)
-    {
-        if (files && files[0]){
-            const reader = new FileReader();
-            reader.readAsDataURL(files[0]);
+    for(let i = 0; i < $inputFile.length; i++){
+        function createImage(files)
+        {
+            if(!$previewAvatar[i]){
+                return;
+            }
 
-            reader.onload = function(e){
-                $previewAvatar.src = e.target.result;
+            if (files && files[0]){
+                const reader = new FileReader();
+                reader.readAsDataURL(files[0]);
+
+                reader.onload = function(e){
+                    $previewAvatar[i].src = e.target.result;
+                }
             }
         }
-    }
 
-    $inputFile.addEventListener('change', function(e){
-        const files = e.target.files;
-        createImage(files);
-    });
+        $inputFile[i].addEventListener('change', function(e){
+            const files = e.target.files;
+            createImage(files);
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function(){

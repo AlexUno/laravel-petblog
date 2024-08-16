@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'avatar' => 'image',
+            'avatar' => 'nullable|image',
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users,email,' . $this->user_id,
             'role_id' => 'required|integer|exists:roles,id',
