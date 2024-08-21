@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,7 +12,7 @@ class PostService {
     {
         try {
             DB::beginTransaction();
-            $data['user_id'] = 1;
+            $data['user_id'] = Auth::user()->id;
 
             if (isset($data['tag_ids'])) {
                 $tagIds = $data['tag_ids'];
@@ -48,7 +49,7 @@ class PostService {
     {
         try {
             DB::beginTransaction();
-            $data['user_id'] = 1;
+            $data['user_id'] = Auth::user()->id;
 
             if (isset($data['tag_ids'])) {
                 $tagIds = $data['tag_ids'];
