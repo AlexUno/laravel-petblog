@@ -166,6 +166,17 @@
                     <i class="fas fa-th-large"></i>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="{{ route('admin.auth.logout') }}"
+                   onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    Выйти
+                </a>
+
+                <form id="logout-form" action="{{ route('admin.auth.logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
         </ul>
     </nav>
     <!-- /.navbar -->
