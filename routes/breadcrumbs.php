@@ -92,3 +92,26 @@ Breadcrumbs::for('admin.posts.edit', function(BreadcrumbTrail $trail, Post $post
 
 /* -------------------------- End posts  ----------------------------------*/
 // End admin
+
+
+// Site section
+
+/* -------------------------- Main ---------------------------------------*/
+
+Breadcrumbs::for('index', function(BreadcrumbTrail $trail){
+    $trail->push('Главная', route('index'));
+});
+
+/* -------------------------- End main ---------------------------------------*/
+
+
+/* -------------------------- Posts ---------------------------------------*/
+
+Breadcrumbs::for('posts.index', function(BreadcrumbTrail $trail){
+    $trail->parent('index');
+    $trail->push('Наш блог', route('posts.index'));
+});
+
+/* -------------------------- End posts  ----------------------------------*/
+
+// End site

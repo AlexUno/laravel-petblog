@@ -65,7 +65,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('index') }}">Главная</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="service.html">Блог</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('posts.index') }}">Блог</a></li>
                 </ul>
             </div>
         </div>
@@ -85,7 +85,7 @@
                         <h4 class="text-capitalize mb-4">Меню</h4>
                         <ul class="list-unstyled footer-menu lh-35">
                             <li><a href="{{ route('index') }}">Главная</a></li>
-                            <li><a href="#">Блог</a></li>
+                            <li><a href="{{ route('posts.index') }}">Блог</a></li>
                         </ul>
                     </div>
                 </div>

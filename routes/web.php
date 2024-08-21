@@ -71,5 +71,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
 });
 
 Auth::routes();
-
 Route::get('/', 'HomeController')->name('index');
+
+Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
+    Route::get('/', 'IndexController')->name('posts.index');
+});
