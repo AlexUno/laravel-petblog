@@ -72,7 +72,4 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
 
 Auth::routes();
 
-Route::get('/', function(){
-   return view('welcome');
-})->name('index');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', 'HomeController')->name('index');
