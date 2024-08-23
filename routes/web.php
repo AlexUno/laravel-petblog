@@ -83,5 +83,15 @@ Route::group(['namespace' => 'Profile', 'prefix' => 'profile'], function(){
 
     Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
         Route::get('/', 'IndexController')->name('profile.posts.index');
+        Route::get('/create', 'CreateController')->name('profile.posts.create');
+        Route::post('/', 'StoreController')->name('profile.posts.store');
+        Route::get('/{post}/edit', 'EditController')->name('profile.posts.edit');
+        Route::get('/{post}', 'ShowController')->name('profile.posts.show');
+        Route::patch('/{post}', 'UpdateController')
+            ->middleware('can:update,post')
+            ->name('profile.posts.update');
+        Route::delete('/{post}', 'DestroyController')
+            ->middleware('can:destroy,post')
+            ->name('profile.posts.destroy');
     });
 });

@@ -13,6 +13,6 @@ class EditController extends MainController
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
+        return view('profile.posts.edit', compact('post', 'categories', 'tags'));
     }
 }

@@ -10,6 +10,6 @@ class DestroyController extends MainController
     public function __invoke(Post $post)
     {
         $post->delete();
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('profile.posts.index');
     }
 }

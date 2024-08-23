@@ -12,6 +12,6 @@ class CreateController extends MainController
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.posts.create', compact('categories', 'tags'));
+        return view('profile.posts.create', compact('categories', 'tags'));
     }
 }

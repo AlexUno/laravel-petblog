@@ -7,6 +7,9 @@
             <div class="col-md-6 my-5 ">
                 <h2>Мои посты</h2>
             </div>
+            <div class="col-md-6 my-5 d-flex justify-content-end">
+                <a href="{{ route('profile.posts.create') }}" class="btn btn-primary">Новый пост</a>
+            </div>
         </div>
         <div class="row">
             <div class="col-12">
@@ -44,13 +47,13 @@
                                                 <td>{{ $post->title }}</td>
                                                 <td>{{ $post->category->title }}</td>
                                                 <td class="d-flex">
-                                                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="mr-2 btn btn-primary px-2 py-1">
+                                                    <a href="{{ route('profile.posts.edit', $post->id) }}" class="mr-2 btn btn-primary px-2 py-1">
                                                         <i class="fas fa-pen" style="font-size: 12px;"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.posts.show', $post->id) }}" class="mr-2 btn btn-secondary px-2 py-1">
+                                                    <a href="{{ route('profile.posts.show', $post->id) }}" class="mr-2 btn btn-secondary px-2 py-1">
                                                         <i class="fas fa-eye" style="font-size: 12px;"></i>
                                                     </a>
-                                                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post">
+                                                    <form action="{{ route('profile.posts.destroy', $post->id) }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="btn btn-danger px-2 py-1">

@@ -13,6 +13,6 @@ class UpdateController extends MainController
         $data = $request->validated();
         $this->service->update($data, $post);
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('profile.posts.index');
     }
 }

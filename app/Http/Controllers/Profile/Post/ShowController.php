@@ -9,6 +9,6 @@ class ShowController extends MainController
 {
     public function __invoke(Post $post)
     {
-        return view('admin.posts.show', compact('post'));
+        return view('profile.posts.show', compact('post'));
     }
 }

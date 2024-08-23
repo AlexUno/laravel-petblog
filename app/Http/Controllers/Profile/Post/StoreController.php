@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Profile\Post;
 
-use App\Http\Requests\Admin\Post\StoreRequest;
+use App\Http\Requests\Profile\Post\StoreRequest;
 use Illuminate\Http\Request;
 
 class StoreController extends MainController
@@ -12,6 +12,6 @@ class StoreController extends MainController
         $data = $request->validated();
         $this->service->store($data);
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('profile.posts.index');
     }
 }

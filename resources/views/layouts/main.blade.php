@@ -10,6 +10,8 @@
 
     <title>Блог | @yield('head-title') </title>
 
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ URL::asset('/') }}assets/admin/plugins/select2/css/select2.min.css">
     <!-- bootstrap.min css -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
     <!-- Icon Font Css -->
@@ -19,7 +21,8 @@
     <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/slick-carousel/slick/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/slick-carousel/slick/slick-theme.css') }}">
-
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ URL::asset('/') }}assets/admin/plugins/summernote/summernote-bs4.min.css">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <style>
@@ -168,9 +171,28 @@ Essential Scripts
 <!-- Google Map -->
 <script src="{{ asset('assets/plugins/google-map/map.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
+<!-- Summernote -->
+<script src="{{ URL::asset('/') }}assets/admin/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="{{ URL::asset('/') }}assets/admin/plugins/select2/js/select2.full.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="{{ URL::asset('/') }}assets/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
 <script src="{{ asset('assets/js/script.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
+<script>
+    $(function () {
+        bsCustomFileInput.init();
+    });
+
+    // Summernote
+    $('#summernote').summernote({
+        height: 100
+    });
+
+    //Initialize Select2 Elements
+    $('.select2').select2();
+</script>
 </body>
 </html>
