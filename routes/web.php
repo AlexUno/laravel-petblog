@@ -76,3 +76,8 @@ Route::get('/', 'HomeController')->name('index');
 Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
     Route::get('/', 'IndexController')->name('posts.index');
 });
+
+Route::group(['namespace' => 'Profile', 'prefix' => 'profile'], function(){
+    Route::get('/', 'IndexController')->name('profile.index');
+    Route::patch('/', 'UpdateController')->name('profile.update');
+});

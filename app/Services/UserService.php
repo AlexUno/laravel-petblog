@@ -38,6 +38,8 @@ class UserService {
 
         if ($data['avatar']) {
             $data['avatar'] = Storage::disk('public')->put('/images/' . $user->id, $data['avatar']);
+        } else {
+            $data['avatar'] = $user->avatar;
         }
 
         $user->update($data);

@@ -22,7 +22,11 @@
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
+    <style>
+        .custom-file-input:lang(ru) ~ .custom-file-label::after {
+            content: "Выбрать";
+        }
+    </style>
 </head>
 
 <body>
@@ -43,8 +47,22 @@
                 </div>
                 <div class="col-lg-10 col-md-8 text-center text-lg-right text-md-right">
                     <div class="header-top-info">
-                        <a href="tel:+23-345-67890">Телефон : <span>+7-999-999-99-99</span></a>
-                        <a href="mailto:support@gmail.com" ><i class="fa fa-envelope mr-2"></i><span>support@gmail.com</span></a>
+                        @guest
+                            <a href="{{ route('login') }}"><span>Войти</span></a>
+                            <a href="{{ route('register') }}"><span>Зарегистрироваться</span></a>
+                        @endguest
+                        @auth
+                                <a href="{{ route('profile.index') }}"><span>Профиль</span></a>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                    <span>Выйти</span>
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -151,6 +169,7 @@ Essential Scripts
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>
 
 <script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 </html>
