@@ -80,4 +80,8 @@ Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
 Route::group(['namespace' => 'Profile', 'prefix' => 'profile'], function(){
     Route::get('/', 'IndexController')->name('profile.index');
     Route::patch('/', 'UpdateController')->name('profile.update');
+
+    Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
+        Route::get('/', 'IndexController')->name('profile.posts.index');
+    });
 });
