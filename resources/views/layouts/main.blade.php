@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="megakit,business,company,agency,multipurpose,modern,bootstrap4">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="author" content="themefisher.com">
 
@@ -155,7 +156,7 @@ Essential Scripts
 
 
 <!-- Main jQuery -->
-<script src="{{ asset('assets/plugins/jquery/jquery.js') }}"></script>
+<script src="{{ asset('assets/admin/plugins/jquery/jquery.js') }}"></script>
 <script src="{{ asset('assets/js/contact.js') }}"></script>
 <!-- Bootstrap 4.3.1 -->
 <script src="{{ asset('assets/plugins/bootstrap/js/popper.js') }}"></script>

@@ -32,7 +32,7 @@ class Post extends Model
 
     public function likes()
     {
-        return $this->hasMany(Like::class, 'post_id', 'id');
+        return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id')->withPivot('is_like');
     }
 
     public function getLikesCountAttribute()
@@ -48,5 +48,11 @@ class Post extends Model
     public function getDateAsCarbonAttribute()
     {
         return Carbon::parse($this->created_at);
+    }
+
+    public function userHasLiked()
+    {
+        $like = $this->likes()->where('user_id', auth()->id())->first();
+        return $like ? $like->pivot->is_like : null;
     }
 }

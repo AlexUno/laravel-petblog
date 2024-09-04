@@ -28,6 +28,55 @@ function previewAvatar(){
     }
 }
 
+function likes(){
+    function toggleLike(el, isLike){
+        const postId = el.data('post-id');
+        const token = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: `/posts/${postId}/like`,
+            type: 'POST',
+            data: {
+                '_token': token,
+                'is_like': isLike
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (!response['success']) return;
+
+                if(isLike){
+                    if($(`button[data-post-id="${postId}"][data-type="btn-like"] > i`).hasClass('fas')){
+                        $(`button[data-post-id="${postId}"][data-type="btn-like"]`).html('<i class="far fa-thumbs-up"></i>');
+                    }
+                    else{
+                        $(`button[data-post-id="${postId}"][data-type="btn-dislike"]`).html('<i class="far fa-thumbs-down"></i>');
+                        $(`button[data-post-id="${postId}"][data-type="btn-like"]`).html('<i class="fas fa-thumbs-up"></i>');
+                    }
+                }else{
+                    if($(`button[data-post-id="${postId}"][data-type="btn-dislike"] > i`).hasClass('fas')) {
+                        $(`button[data-post-id="${postId}"][data-type="btn-dislike"]`).html('<i class="far fa-thumbs-down"></i>');
+                    } else {
+                        $(`button[data-post-id="${postId}"][data-type="btn-dislike"]`).html('<i class="fas fa-thumbs-down"></i>');
+                        $(`button[data-post-id="${postId}"][data-type="btn-like"]`).html('<i class="far fa-thumbs-up"></i>');
+                    }
+                }
+
+                $(`[data-type="like-count-${postId}"]`).text(response['likesCount']);
+                $(`[data-type="dislike-count-${postId}"]`).text(response['dislikesCount']);
+            }
+        });
+    }
+
+    $(document).on('click', '[data-type="btn-like"]', function(){
+        toggleLike($(this), 1);
+    });
+
+    $(document).on('click', '[data-type="btn-dislike"]', function() {
+       toggleLike($(this), 0);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     previewAvatar();
+    likes();
 });

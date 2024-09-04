@@ -33,23 +33,43 @@
                                                     <i class="ti-pencil-alt mr-2"></i>{{ $post->category->title }}
                                                 </span>
                                             </div>
+                                            @php
+                                                $isLiked = $post->userHasLiked(); // true, false или null
+                                            @endphp
                                             <div class="likes-group py-1">
-                                                {{--                                                    <button style="border: 0; background: transparent;">--}}
-                                                {{--                                                        <i class="fas fa-thumbs-up"></i>--}}
-                                                {{--                                                    </button>--}}
-                                                <button style="border: 0; outline: none; background: transparent;">
-                                                    <i class="far fa-thumbs-up"></i>
-                                                </button>
-                                                <span>
+                                                @if(is_null($isLiked))
+                                                    <button data-post-id="{{ $post->id }}" data-type="btn-like" style="border: 0; outline: none; background: transparent;">
+                                                        <i class="far fa-thumbs-up"></i>
+                                                    </button>
+                                                @elseif($isLiked)
+                                                    <button data-post-id="{{ $post->id }}" data-type="btn-like" style="border: 0; outline: none; background: transparent;">
+                                                        <i class="fas fa-thumbs-up"></i>
+                                                    </button>
+                                                @else
+                                                    <button data-post-id="{{ $post->id }}" data-type="btn-like" style="border: 0; outline: none; background: transparent;">
+                                                        <i class="far fa-thumbs-up"></i>
+                                                    </button>
+                                                @endif
+
+                                                <span data-type="like-count-{{ $post->id }}">
                                                     {{ $post->likesCount }}
                                                 </span>
-                                                {{--                                                    <button style="border: 0; background: transparent;">--}}
-                                                {{--                                                        <i class="fas fa-thumbs-down"></i>--}}
-                                                {{--                                                    </button>--}}
-                                                <button style="border: 0; outline: none; background: transparent;">
-                                                    <i class="far fa-thumbs-down"></i>
-                                                </button>
-                                                <span>
+
+
+                                                @if(is_null($isLiked))
+                                                    <button data-post-id="{{ $post->id }}" data-type="btn-dislike" style="border: 0; outline: none; background: transparent;">
+                                                        <i class="far fa-thumbs-down"></i>
+                                                    </button>
+                                                @elseif($isLiked)
+                                                    <button data-post-id="{{ $post->id }}" data-type="btn-dislike" style="border: 0; outline: none; background: transparent;">
+                                                        <i class="far fa-thumbs-down"></i>
+                                                    </button>
+                                                @else
+                                                    <button data-post-id="{{ $post->id }}" data-type="btn-dislike" style="border: 0; outline: none; background: transparent;">
+                                                        <i class="fas fa-thumbs-down"></i>
+                                                    </button>
+                                                @endif
+                                                <span data-type="dislike-count-{{ $post->id }}">
                                                     {{ $post->dislikesCount }}
                                                 </span>
                                             </div>
