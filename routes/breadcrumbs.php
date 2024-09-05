@@ -112,6 +112,11 @@ Breadcrumbs::for('posts.index', function(BreadcrumbTrail $trail){
     $trail->push('Наш блог', route('posts.index'));
 });
 
+Breadcrumbs::for('posts.show', function(BreadcrumbTrail $trail, Post $post){
+    $trail->parent('posts.index');
+    $trail->push($post->title, route('posts.show', ['post' => $post]));
+});
+
 /* -------------------------- End posts  ----------------------------------*/
 
 // End site

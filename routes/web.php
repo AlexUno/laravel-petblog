@@ -75,6 +75,7 @@ Route::get('/', 'HomeController')->name('index');
 
 Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function(){
     Route::get('/', 'IndexController')->name('posts.index');
+    Route::get('/{post}', 'ShowController')->name('posts.show');
 
     Route::group(['namespace' => 'Like'], function(){
         Route::post('/{post}/like', 'UpdateController')->name('posts.like');

@@ -75,13 +75,13 @@
                                             </div>
 
                                             <h3 class="mt-3 mb-3">
-                                                <a href="blog-single.html">{{ $post->title }}</a>
+                                                <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a>
                                             </h3>
                                             <p class="mb-4">
 
                                             </p>
 
-                                            <a href="blog-single.html" class="btn btn-small btn-main btn-round-full">
+                                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-small btn-main btn-round-full">
                                                 Подробнее
                                             </a>
                                         </div>
@@ -105,7 +105,7 @@
 
                                 @foreach($latestPosts as $lPost)
                                     <div class="media border-bottom py-3">
-                                        <a href="#">
+                                        <a href="{{ route('posts.show', $post->id) }}">
                                             <img class="mr-4"
                                                  width="87"
                                                  height="72"
