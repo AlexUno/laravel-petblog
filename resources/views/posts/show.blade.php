@@ -133,71 +133,55 @@
                             </div>
                         </div>
 
-{{--                        <div class="col-lg-12 mb-5">--}}
-{{--                            <div class="comment-area card border-0 p-5">--}}
-{{--                                <h4 class="mb-4">2 Comments</h4>--}}
-{{--                                <ul class="comment-tree list-unstyled">--}}
-{{--                                    <li class="mb-5">--}}
-{{--                                        <div class="comment-area-box">--}}
-{{--                                            <img alt="" src="images/blog/test1.jpg" class="img-fluid float-left mr-3 mt-2">--}}
+                        @php
+                            $countComments = $post->comments()->count();
+                        @endphp
+                        @if($countComments)
+                            <div class="col-lg-12 mb-5">
+                                <div class="comment-area card border-0 p-5">
+                                    <h4 class="mb-4">Количество комментариев: {{$countComments}}</h4>
+                                    <ul class="comment-tree list-unstyled">
+                                        @foreach($post->comments as $comment)
+                                            <li class="mb-5">
+                                            <div class="comment-area-box">
+                                                <img width="50" height="50" alt="" src="{{$comment->user->avatar ? asset('storage/' . $comment->user->avatar) : asset('assets/admin/img/avatar.png') }}" class="img-fluid float-left mr-3 mt-2">
 
-{{--                                            <h5 class="mb-1">Philip W</h5>--}}
-{{--                                            <span>United Kingdom</span>--}}
+                                                <h5 class="mt-3 mb-1 d-inline-flex">{{ $comment->user->name }}</h5>
 
-{{--                                            <div class="comment-meta mt-4 mt-lg-0 mt-md-0 float-lg-right float-md-right">--}}
-{{--                                                <a href="#"><i class="icofont-reply mr-2 text-muted"></i>Reply |</a>--}}
-{{--                                                <span class="date-comm">Posted October 7, 2018 </span>--}}
-{{--                                            </div>--}}
+                                                <div class="comment-meta mt-4 mt-lg-0 mt-md-0 float-lg-right float-md-right">
+                                                    <a href="#"><i class="icofont-reply mr-2 text-muted"></i></a>
+                                                    <span class="d-inline-flex mt-3 date-comm">{{$comment->dateAsCarbon->diffForHumans()}}, {{ $comment->dateAsCarbon->year }} </span>
+                                                </div>
 
-{{--                                            <div class="comment-content mt-3">--}}
-{{--                                                <p>Some consultants are employed indirectly by the client via a consultancy staffing company, a company that provides consultants on an agency basis. </p>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </li>--}}
+                                                <div class="comment-content mt-3">
+                                                    <p>{{ $comment->message }}</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
 
-{{--                                    <li>--}}
-{{--                                        <div class="comment-area-box">--}}
-{{--                                            <img alt="" src="images/blog/test2.jpg" class="mt-2 img-fluid float-left mr-3">--}}
+                        @auth()
+                            <div class="col-lg-12">
+                                <form action="{{ route('posts.comments.store', $post->id) }}" class="contact-form bg-white rounded p-5" id="comment-form" method="POST">
+                                    @csrf()
 
-{{--                                            <h5 class="mb-1">Philip W</h5>--}}
-{{--                                            <span>United Kingdom</span>--}}
+                                    <h4 class="mb-4">Оставить комментарий</h4>
 
-{{--                                            <div class="comment-meta mt-4 mt-lg-0 mt-md-0 float-lg-right float-md-right">--}}
-{{--                                                <a href="#"><i class="icofont-reply mr-2 text-muted"></i>Reply |</a>--}}
-{{--                                                <span class="date-comm">Posted October 7, 2018</span>--}}
-{{--                                            </div>--}}
+                                    <textarea class="form-control mb-3" name="message" id="comment" cols="30" rows="5" placeholder="Комментарий"></textarea>
 
-{{--                                            <div class="comment-content mt-3">--}}
-{{--                                                <p>Some consultants are employed indirectly by the client via a consultancy staffing company, a company that provides consultants on an agency basis. </p>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-lg-12">--}}
-{{--                            <form class="contact-form bg-white rounded p-5" id="comment-form">--}}
-{{--                                <h4 class="mb-4">Write a comment</h4>--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-md-6">--}}
-{{--                                        <div class="form-group">--}}
-{{--                                            <input class="form-control" type="text" name="name" id="name" placeholder="Name:">--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-6">--}}
-{{--                                        <div class="form-group">--}}
-{{--                                            <input class="form-control" type="text" name="mail" id="mail" placeholder="Email:">--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <textarea class="form-control mb-3" name="comment" id="comment" cols="30" rows="5" placeholder="Comment"></textarea>--}}
-
-{{--                                <input class="btn btn-main btn-round-full" type="submit" name="submit-contact" id="submit_contact" value="Submit Message">--}}
-{{--                            </form>--}}
-{{--                        </div>--}}
+                                    <input class="btn btn-main btn-round-full" type="submit" name="submit-contact" id="submit_contact" value="Отправить">
+                                </form>
+                                @error('message')
+                                    <p class="text-danger">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+                        @endauth
                     </div>
                 </div>
 

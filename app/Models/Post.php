@@ -55,4 +55,9 @@ class Post extends Model
         $like = $this->likes()->where('user_id', auth()->id())->first();
         return $like ? $like->pivot->is_like : null;
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'id');
+    }
 }
