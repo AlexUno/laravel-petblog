@@ -24,7 +24,8 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'message' => 'required|string|min:5'
+            'message' => 'required|string|min:5',
+            'parent_id' => 'required|integer|nullable|exists:comments,id'
         ];
     }
 

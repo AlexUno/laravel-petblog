@@ -133,31 +133,52 @@
                             </div>
                         </div>
 
-                        @php
-                            $countComments = $post->comments()->count();
-                        @endphp
-                        @if($countComments)
+                        @if($comments)
                             <div class="col-lg-12 mb-5">
-                                <div class="comment-area card border-0 p-5">
-                                    <h4 class="mb-4">Количество комментариев: {{$countComments}}</h4>
+                                <div data-type="comment-container" class="comment-area card border-0 p-5">
+                                    <h4 class="mb-4">Количество комментариев: {{$totalComments}}</h4>
                                     <ul class="comment-tree list-unstyled">
-                                        @foreach($post->comments as $comment)
+                                        @foreach($comments as $comment)
                                             <li class="mb-5">
-                                            <div class="comment-area-box">
-                                                <img width="50" height="50" alt="" src="{{$comment->user->avatar ? asset('storage/' . $comment->user->avatar) : asset('assets/admin/img/avatar.png') }}" class="img-fluid float-left mr-3 mt-2">
+                                                <div data-type="comment-box" class="comment-area-box">
+                                                    <img width="50" height="50" alt="" src="{{$comment->user->avatar ? asset('storage/' . $comment->user->avatar) : asset('assets/admin/img/avatar.png') }}" class="img-fluid float-left mr-3 mt-2">
 
-                                                <h5 class="mt-3 mb-1 d-inline-flex">{{ $comment->user->name }}</h5>
+                                                    <h5 class="mt-3 mb-1 d-inline-flex">{{ $comment->user->name }}</h5>
 
-                                                <div class="comment-meta mt-4 mt-lg-0 mt-md-0 float-lg-right float-md-right">
-                                                    <a href="#"><i class="icofont-reply mr-2 text-muted"></i></a>
-                                                    <span class="d-inline-flex mt-3 date-comm">{{$comment->dateAsCarbon->diffForHumans()}}, {{ $comment->dateAsCarbon->year }} </span>
+                                                    <div class="comment-meta mt-4 mt-lg-0 mt-md-0 float-lg-right float-md-right">
+                                                        <a data-action="{{ route('posts.comments.store', $post->id) }}" data-parent-id="{{$comment->id}}" data-user-name="{{$comment->user->name}}" data-type="reply" href="#"><i class="icofont-reply mr-2 text-muted"></i>
+                                                            Ответить |
+                                                        </a>
+                                                        <span class="d-inline-flex mt-3 date-comm">{{$comment->dateAsCarbon->diffForHumans()}}, {{ $comment->dateAsCarbon->year }} </span>
+                                                    </div>
+
+                                                    <div class="comment-content mt-3">
+                                                        <p>{{ $comment->message }}</p>
+                                                    </div>
                                                 </div>
+                                                @if($comment->replies->isNotEmpty())
+                                                    <ul data-type="comment-box" class="comment-tree list-unstyled ml-5">
+                                                        @foreach($comment->replies as $replyComment)
+                                                            <li class="mb-5">
+                                                                <div data-type="comment-box" class="comment-area-box">
+                                                                    <img width="50" height="50" alt="" src="{{$replyComment->user->avatar ? asset('storage/' . $replyComment->user->avatar) : asset('assets/admin/img/avatar.png') }}" class="img-fluid float-left mr-3 mt-2">
 
-                                                <div class="comment-content mt-3">
-                                                    <p>{{ $comment->message }}</p>
-                                                </div>
-                                            </div>
-                                        </li>
+                                                                    <h5 class="mt-3 mb-1 d-inline-flex">{{ $replyComment->user->name }}</h5>
+
+                                                                    <div class="comment-meta mt-4 mt-lg-0 mt-md-0 float-lg-right float-md-right">
+                                                                        <a data-action="{{ route('posts.comments.store', $post->id) }}" data-parent-id="{{$comment->id}}" data-user-name="{{$replyComment->user->name}}" data-type="reply" href="#"><i class="icofont-reply mr-2 text-muted"></i>Ответить |</a>
+                                                                        <span class="d-inline-flex mt-3 date-comm">{{$comment->dateAsCarbon->diffForHumans()}}, {{ $comment->dateAsCarbon->year }}</span>
+                                                                    </div>
+
+                                                                    <div class="comment-content mt-3">
+                                                                        <p>{{ $replyComment->message }}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -168,6 +189,7 @@
                             <div class="col-lg-12">
                                 <form action="{{ route('posts.comments.store', $post->id) }}" class="contact-form bg-white rounded p-5" id="comment-form" method="POST">
                                     @csrf()
+                                    <input type="hidden" name="parent_id" value=""/>
 
                                     <h4 class="mb-4">Оставить комментарий</h4>
 
