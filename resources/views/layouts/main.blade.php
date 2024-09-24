@@ -58,6 +58,7 @@
                         @auth
                                 <a href="{{ route('profile.index') }}"><span>Профиль</span></a>
                                 <a href="{{ route('profile.posts.index') }}"><span>Мои посты</span></a>
+                                <a href="{{ route('profile.comments.index') }}"><span>Комментарии</span></a>
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">

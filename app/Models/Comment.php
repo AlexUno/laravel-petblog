@@ -29,4 +29,20 @@ class Comment extends Model
     {
         return $this->hasMany(Comment::class, 'parent_id', 'id');
     }
+
+    public static function userCommentsWithReplies($userId)
+    {
+        return self::where('user_id', $userId)
+            ->with([
+                'replies' => function($query) {
+                    $query->where('is_read', false);
+                }
+            ])
+            ->get();
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class, 'post_id', 'id');
+    }
 }

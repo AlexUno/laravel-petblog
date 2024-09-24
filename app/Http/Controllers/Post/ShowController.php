@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShowController extends Controller
 {
@@ -24,6 +25,11 @@ class ShowController extends Controller
         $comments = Comment::where('post_id', $post->id)
             ->whereNull('parent_id')
             ->get();
+        
+        Comment::where('post_id', $post->id)
+            ->where('is_read', false)
+            ->where('user_id', '!=', Auth::id())
+            ->update(['is_read' => true]);
 
         return view('posts.show', compact(
             'post',

@@ -103,4 +103,8 @@ Route::group(['namespace' => 'Profile', 'prefix' => 'profile'], function(){
             ->middleware('can:destroy,post')
             ->name('profile.posts.destroy');
     });
+
+    Route::group(['namespace' => 'Comment', 'prefix' => 'comments'], function(){
+        Route::get('/', 'IndexController')->name('profile.comments.index');
+    });
 });
