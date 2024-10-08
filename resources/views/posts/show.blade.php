@@ -187,7 +187,7 @@
 
                         @auth()
                             <div class="col-lg-12">
-                                <form action="{{ route('posts.comments.store', $post->id) }}" class="contact-form bg-white rounded p-5" id="comment-form" method="POST">
+                                <form action="{{ route('posts.comments.store', $post->id) }}" class="contact-form bg-white rounded p-5" method="POST">
                                     @csrf()
                                     <input type="hidden" name="parent_id" value=""/>
 
@@ -195,7 +195,7 @@
 
                                     <textarea class="form-control mb-3" name="message" id="comment" cols="30" rows="5" placeholder="Комментарий"></textarea>
 
-                                    <input class="btn btn-main btn-round-full" type="submit" name="submit-contact" id="submit_contact" value="Отправить">
+                                    <input class="btn btn-main btn-round-full" type="submit" name="submit-contact" value="Отправить">
                                 </form>
                                 @error('message')
                                     <p class="text-danger">

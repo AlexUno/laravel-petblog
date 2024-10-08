@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'message' => 'required|string|min:5',
-            'parent_id' => 'required|integer|nullable|exists:comments,id'
+            'parent_id' => 'nullable|integer'
         ];
     }
 

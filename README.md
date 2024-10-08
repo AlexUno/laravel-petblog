@@ -2,7 +2,7 @@
 
 A simple blog application built with laravel framework.
 
-## Features (Planned)
+## Features
 
 - Main page with common information
 - Categories for posts
@@ -66,13 +66,13 @@ php artisan serve
 
 ## Usage
 
-### Creating Posts (Planned)
+### Creating Posts
 
 - Register an account and log in.
 - Navigate to the "Posts" page and click the "Create Post".
 - Fill in the form and submit to create a new post.
 
-### Liking and Disliking Posts (Planned)
+### Liking and Disliking Posts
 
 - Click the "Like" button to like a post.
 - Click the "Dislike" button to dislike a post.
